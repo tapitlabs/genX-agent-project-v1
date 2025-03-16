@@ -17,3 +17,4 @@ openai
 slack-sdk 
 slack-bolt 
 flask
+langchain_community
