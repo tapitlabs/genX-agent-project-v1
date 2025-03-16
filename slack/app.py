@@ -105,7 +105,7 @@ def handle_mentions(body, say):
     response = draft_email(text)
     say(response)
 
-
+#demo
 @flask_app.route("/slack/events", methods=["POST"])
 #@require_slack_verification
 def slack_events():
