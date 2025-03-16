@@ -11,3 +11,9 @@ wikipedia
 psycopg2
 pinecone-client
 pgvector
+python-dotenv
+langchain
+openai
+slack-sdk 
+slack-bolt 
+flask
