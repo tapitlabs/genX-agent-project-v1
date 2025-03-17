@@ -44,7 +44,7 @@ class CustomDeepSeekR1(ChatOpenAI):
 
 # Function to draft an email using DeepSeek-R1 fine-tuned model
 def draft_email(user_input, name="There"):
-    chat = CustomDeepSeekR1(model_name="deepseek-r1")
+    chat = CustomDeepSeekR1(model_name=CUSTOM_MODEL_NAME)
 
     template = """
     You are a helpful assistant that drafts an email reply based on an a new email.
