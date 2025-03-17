@@ -1,3 +1,4 @@
+import os
 import requests
 from langchain_community.chat_models import ChatOpenAI
 from langchain.chains import LLMChain
