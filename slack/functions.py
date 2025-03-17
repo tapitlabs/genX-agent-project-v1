@@ -15,7 +15,7 @@ load_dotenv(find_dotenv())
 # RunPod API Configuration
 RUNPOD_ENDPOINT_ID = os.environ["RUNPOD_ENDPOINT_ID"]
 RUNPOD_ACCESS_TOKEN = os.environ["RUNPOD_ACCESS_TOKEN"]
-CUSTOM_MODEL_NAME = "deepseek-r1"  # Replace with your fine-tuned DeepSeek-R1 model name
+CUSTOM_MODEL_NAME = "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"  # Replace with your fine-tuned DeepSeek-R1 model name
 
 RUNPOD_API_URL = f"https://api.runpod.io/v2/{RUNPOD_ENDPOINT_ID}/run"
 
