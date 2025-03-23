@@ -16,8 +16,10 @@ from langchain.prompts.chat import (
 load_dotenv(find_dotenv())
 
 # RunPod API Configuration
-RUNPOD_ENDPOINT_ID = os.environ["RUNPOD_ENDPOINT_ID"]
-RUNPOD_ACCESS_TOKEN = os.environ["RUNPOD_ACCESS_TOKEN"]
+#RUNPOD_ENDPOINT_ID = os.environ["RUNPOD_ENDPOINT_ID"]
+#RUNPOD_ACCESS_TOKEN = os.environ["RUNPOD_ACCESS_TOKEN"]
+RUNPOD_ENDPOINT_ID = "94js71uw1j9ihj"
+RUNPOD_ACCESS_TOKEN = "rpa_7R9GRZPL1KSKOWTS1LVBXI2VEKTR880AA2MVC93P179q63"
 CUSTOM_MODEL_NAME = "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"  # Replace with your fine-tuned DeepSeek-R1 model name
 
 RUNPOD_API_URL = f"https://api.runpod.ai/v2/{RUNPOD_ENDPOINT_ID}/run"
