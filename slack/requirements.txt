@@ -4,3 +4,4 @@ openai
 slack-sdk 
 slack-bolt 
 flask
+simple_salesforce
