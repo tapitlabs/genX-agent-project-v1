@@ -6,7 +6,7 @@ from langchain.prompts.chat import (
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
 )
-
+from functions import get_LLM_Param
 load_dotenv(find_dotenv())
 
 
@@ -26,6 +26,7 @@ def draft_email(user_input, name="There"):
     Make sure to sign of with {signature}.
     
     """
+    template = template + sf.
 
     signature = f"Kind regards, \n"
     system_message_prompt = SystemMessagePromptTemplate.from_template(template)
