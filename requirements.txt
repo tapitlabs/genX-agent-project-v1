@@ -19,3 +19,4 @@ slack-bolt
 flask
 langchain_community
 langchain_openai
+simple_salesforce
