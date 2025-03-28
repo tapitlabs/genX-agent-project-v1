@@ -109,7 +109,7 @@ def handle_mentions(body, say):
     say("Sure, I'll get right on that!")
     # response = my_function(text)
     response = draft_email(text)
-    # response = response + get_LLM_Param()
+    response = response + get_LLM_Param()
     say(response)
 
 #demo https://genx-agent-g6cga2begxhkefa3.eastus-01.azurewebsites.net/slack/events
