@@ -12,5 +12,5 @@ def get_LLM_Param():
     records = sf.query("Select Id, Name, rule_type__c, tier_number__c FROM QGenix_LLM_Param__c")
     res = json.loads(json.dumps(records))
     for r in res["records"]:
-        result = result + '\n' + r.Name
+        result = result + '\n' + r["Name"]
     return result
