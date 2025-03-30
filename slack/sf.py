@@ -1,6 +1,10 @@
 import os
 from simple_salesforce import Salesforce
-sf = Salesforce(username='animesh.das.myorg2@gmail.com', password='Matlab@00000', security_token='ukZpE0RkPLSYongDC85NF69c')
+# Set SFDC API credentials
+SFDC_USERNAME = os.environ["SFDC_USERNAME"]
+SFDC_USERPWD = os.environ["SFDC_USERPWD"]
+SFDC_TOKEN = os.environ["SFDC_TOKEN"]
+sf = Salesforce(username=SFDC_USERNAME, password=SFDC_USERPWD, security_token=SFDC_TOKEN)
 
 def get_LLM_Param():
     result = ""
