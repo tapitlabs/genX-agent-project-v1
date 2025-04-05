@@ -20,3 +20,4 @@ flask
 langchain_community
 langchain_openai
 simple_salesforce
+sentence-transformers
