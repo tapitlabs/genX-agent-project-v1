@@ -12,7 +12,7 @@ psycopg2
 pinecone-client
 pgvector
 python-dotenv
-langchain
+langgraph
 openai
 slack-sdk 
 slack-bolt 
