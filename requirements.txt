@@ -21,3 +21,6 @@ langchain_community
 langchain_openai
 simple_salesforce
 sentence-transformers
+langchain_huggingface
+langgraph
+matplotlib
