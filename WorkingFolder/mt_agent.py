@@ -73,7 +73,7 @@ memory = ConversationBufferMemory(return_messages=True)
 
 # --- LangGraph Nodes ---
 def entry_node(state: GraphState):
-    print("🔹 entry_node triggered")
+    #print("🔹 entry_node triggered")
 
     if state.get("pdf_generated"):
         return {
@@ -87,7 +87,7 @@ def entry_node(state: GraphState):
     user_input = state.get("question", "")
 
     if field and user_input:
-        print(f"✍️ Saving '{user_input}' to field: {field}")
+        #print(f"✍️ Saving '{user_input}' to field: {field}")
         if field == "amount":
             try:
                 user_input = int(user_input)
@@ -109,9 +109,9 @@ def entry_node(state: GraphState):
 
 
 def parse_request_node(state: GraphState):
-    print("🔹 parse_request_node triggered")
+    #print("🔹 parse_request_node triggered")
     question = state.get("question", "")
-    print("state.question is =", question)
+    #print("state.question is =", question)
 
     prompt = ChatPromptTemplate.from_messages([
         SystemMessagePromptTemplate.from_template(
@@ -139,11 +139,11 @@ Example:
         return {**state, "response": f"Template format error: missing key {e}"}
 
     raw = llm.invoke(messages)
-    print("LLM Raw Response:", raw)
+    #print("LLM Raw Response:", raw)
 
     try:
         content = raw.content.strip()
-        print("🧹 Raw content before cleanup:", content)
+        #print("🧹 Raw content before cleanup:", content)
 
         if content.startswith("```json"):
             content = content[len("```json"):].strip()
@@ -151,13 +151,13 @@ Example:
             content = content[:-3].strip()
 
         parsed_json = json.loads(content)
-        print("📦 Parsed JSON:", parsed_json)
+        #print("📦 Parsed JSON:", parsed_json)
 
         for key in ["action", "customer_name", "product_name", "amount", "month", "contract_length"]:
             parsed_json.setdefault(key, None)
 
         parsed = LLMResponse(**parsed_json)
-        print("✅ Parsed LLM response:", parsed)
+        #print("✅ Parsed LLM response:", parsed)
         return {
             **state,
             "parsed": parsed,
@@ -175,13 +175,13 @@ Example:
 
 
 def ask_customer_name_node(state: GraphState):
-    print("🔹 ask_customer_name_node triggered")
+    #print("🔹 ask_customer_name_node triggered")
     if not state.get("customer_name"):
         return {**state, "response": "What is the customer name?", "awaiting_field": "customer_name"}
     return {**state, "awaiting_field": None}
 
 def collect_quote_details_node(state: GraphState):
-    print("🔹 collect_quote_details_node triggered")
+    #print("🔹 collect_quote_details_node triggered")
     product = state.get("product_name")
     amount = state.get("amount")
     month = state.get("month")
@@ -202,7 +202,7 @@ def collect_quote_details_node(state: GraphState):
 
 
 def finalize_quote_node(state: GraphState):
-    print("🔹 finalize_quote_node triggered")
+    #print("🔹 finalize_quote_node triggered")
 
     if state.get("pdf_generated"):
         print("🔁 Skipping quote regeneration because PDF is already generated.")
@@ -247,7 +247,7 @@ def finalize_quote_node(state: GraphState):
 
 
 def output_node(state: GraphState):
-    print("🔹 output_node triggered")
+    #print("🔹 output_node triggered")
     if state.get("awaiting_field") == "generate_pdf" and not state.get("pdf_generated"):
         answer = state.get("question", "").lower().strip()
         if answer in ["yes", "y"]:
@@ -278,7 +278,7 @@ def output_node(state: GraphState):
     }
 
 def generate_pdf_node(state: GraphState):
-    print("📄 generate_pdf_node triggered")
+    #print("📄 generate_pdf_node triggered")
     if state.get("generate_pdf", "").lower() in ["yes", "y"] and not state.get("pdf_generated"):
         pdf = FPDF()
         pdf.add_page()
