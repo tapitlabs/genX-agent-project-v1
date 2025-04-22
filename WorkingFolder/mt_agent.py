@@ -271,14 +271,15 @@ def output_node(state: GraphState):
 
     if state.get("pdf_generated"):
         return {**state, "response": "Let me know if you need anything else!"}
-
+    
     return {
         **state,
         "response": state.get("response") or state.get("result") or "No response."
     }
 
+
 def generate_pdf_node(state: GraphState):
-    #print("📄 generate_pdf_node triggered")
+    print("📄 generate_pdf_node triggered")
     if state.get("generate_pdf", "").lower() in ["yes", "y"] and not state.get("pdf_generated"):
         pdf = FPDF()
         pdf.add_page()
@@ -288,14 +289,25 @@ def generate_pdf_node(state: GraphState):
         filename = f"quote_{state.get('customer_name', 'customer')}.pdf"
         pdf.output(filename)
         return {
-            **state,
-            "response": f"PDF generated: {filename}",
-            "pdf_generated": True,
-            "generate_pdf": None,
-            "awaiting_field": None,
+            # Reset state after PDF generation
             "question": "",
+            "parsed": None,
+            "result": None,
+            "response": f"PDF generated: {filename}\n\nLet me know if you need anything else!",
+            "customer_name": None,
+            "product_name": None,
+            "amount": None,
+            "month": None,
+            "contract_length": None,
+            "current_step": None,
+            "action": None,
+            "awaiting_field": None,
+            "generate_pdf": None,
+            "pdf_generated": None
         }
-    return state
+
+    return {**state, "response": "Let me know if you need anything else!"}
+
 
 
 # --- Graph ---
@@ -328,9 +340,10 @@ graph.add_edge("finalize_quote", "output")
 
 graph.add_conditional_edges("output", lambda s: (
     "generate_pdf_node"
-    if s.get("generate_pdf", "").lower() in ["yes", "y"] and not s.get("pdf_generated")
+    if isinstance(s.get("generate_pdf"), str) and s.get("generate_pdf").lower() in ["yes", "y"] and not s.get("pdf_generated")
     else END
 ))
+
 graph.add_edge("generate_pdf_node", END)
 graph.set_finish_point("generate_pdf_node" if "generate_pdf_node" in graph.nodes else "output")
 
